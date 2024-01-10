@@ -7,11 +7,16 @@ import { AppContextProvider } from './components/AppContext';
 
 // Renderização da aplicação.
 import MainRoutes from './routes';
+import { createLocalStorage, getAllLocalStorage } from './services/storage';
 
 // Componente principal da aplicação.
 function App() {
+
+  !getAllLocalStorage() && createLocalStorage();
+  
   // Renderiza a aplicação com BrowserRouter para gerenciar as rotas e AppContextProvider para fornecer o contexto.
   return (
+
     <>
       <BrowserRouter>
         <AppContextProvider> {/* Provedor de contexto que envolve toda a aplicação. */}

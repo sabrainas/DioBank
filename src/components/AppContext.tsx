@@ -1,5 +1,6 @@
 // Importação da função createContext do React para criar um contexto.
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
+import { getAllLocalStorage } from '../services/storage';
 
 // Definição de uma interface para o contexto da aplicação.
 interface IAppContext {
@@ -14,7 +15,15 @@ export const AppContext = createContext({} as IAppContext);
 // Componente AppContextProvider que irá envolver a aplicação e fornecer o contexto.
 export const AppContextProvider = ({ children }: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
-  
+
+  const storage = getAllLocalStorage()
+
+  useEffect(() => {
+    if(storage){
+      const login = JSON.parse(storage)
+    }  
+  }, [])
+
     // Define uma constante 'user' com o valor 'sabrina'.
   const user = 'sabrina';
 

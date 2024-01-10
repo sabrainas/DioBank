@@ -4,6 +4,7 @@ import { Form } from "../components/Card"
 import { Login } from "../services/Login"
 import { useNavigate } from "react-router-dom"
 import { AppContext } from "../components/AppContext"
+import { changeLocalStorage } from "../services/storage"
 
 const Home = () =>{
     const [email, setEmail] = useState<string>('') //state para armazenar o valor do email
@@ -16,8 +17,8 @@ const Home = () =>{
         if(!loggedIn){
             return alert('Usuário ou senha inválidos')
         }
-
         setIsLoggedIn(true)
+        changeLocalStorage({login: true})
 
         navigate('/conta/1')
     }
